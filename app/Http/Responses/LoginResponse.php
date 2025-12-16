@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Responses;
 
 use Illuminate\Http\JsonResponse;

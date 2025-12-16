@@ -103,7 +103,7 @@ return [
     */
 
     // Middleware "web" pour gérer correctement les sessions / cookies
-    'middleware' => ['web'],
+    'middleware' => ['api'],
 
     /*
     |--------------------------------------------------------------------------
