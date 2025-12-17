@@ -3,6 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ClientMiddleware;
+use App\Http\Middleware\EntrepreneurMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,15 +22,21 @@ return Application::configure(basePath: dirname(__DIR__))
          *
          * Les autres routes continuent d'être protégées par CSRF.
          */
-        $middleware->validateCsrfTokens(
-            except: [
-                'login',
-                'register',
-                'logout',
-                'forgot-password',
-                'reset-password',
-            ],
-        );
+        // $middleware->validateCsrfTokens(
+        //     except: [
+        //         'login',
+        //         'register',
+        //         'logout',
+        //         'forgot-password',
+        //         'reset-password',
+        //     ],
+        // );
+
+        $middleware->alias([
+            'admin' => [AdminMiddleware::class],
+            'client' => [ClientMiddleware::class],
+            'entrepreneur' => [EntrepreneurMiddleware::class],
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
