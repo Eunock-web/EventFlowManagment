@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth; 
 
 class AdminMiddleware
 {
@@ -19,8 +20,8 @@ class AdminMiddleware
         $user = Auth::user();
         if($user->role !== 'admin'){
             return new JsonResponse([
-                'message' => 'unauthorize'
-            ], 401);
+                'message' => 'Unauthorize. Admin Access Only'
+            ], 403);
         }
         return $next($request);
     }

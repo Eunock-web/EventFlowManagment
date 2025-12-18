@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\JsonResponse;    
+use Illuminate\Support\Facades\Auth; 
 
 class EntrepreneurMiddleware
 {
@@ -18,8 +20,8 @@ class EntrepreneurMiddleware
         $user = Auth::user();
         if($user->role !== 'entrepreneur'){
             return new JsonResponse([
-                'message' => 'unauthorize'
-            ], 401);
+                'message' => 'Unauthorized. Antrepreneur access only'
+            ], 403);
         }
         return $next($request);
     }
