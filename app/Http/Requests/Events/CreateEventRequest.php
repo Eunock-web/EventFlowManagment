@@ -24,9 +24,9 @@ class CreateEventRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:5'],
             'description' => ['required', 'string'],
-            'categories' => ['required', 'unique:events', 'string'],
+            'categories' => ['required', 'string'],
             'place' => ['required', 'string'],
-            'image_url' => ['required', 'string', 'mimes:png,jpg,jpeg'],
+            'image' => ['required','image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'status' => [],
             'start' => ['required','date'],
             'end' => ['required','date'],
@@ -35,8 +35,7 @@ class CreateEventRequest extends FormRequest
 
     public function messsage(): array {
         return [
-            'categorie.unique' => 'Cette categorie existe déjà.',
-            'image_url.mimes' => 'Les formats d\'images autorisés sont le png, jpg et jpeg'
+            'image.mimes' => 'Les formats d\'images autorisés sont le png, jpg et jpeg'
         ];
     }
 }

@@ -12,5 +12,5 @@ Route::get('/user', function (Request $request) {
 Route::controller(EventsController::class)
         ->prefix('events')
         ->group(function (){
-            Route('/create', 'create');
+            Route::post('/create', 'create');
         });
