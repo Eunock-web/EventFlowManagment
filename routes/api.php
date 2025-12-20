@@ -12,5 +12,9 @@ Route::get('/user', function (Request $request) {
 Route::controller(EventsController::class)
         ->prefix('events')
         ->group(function (){
+            Route::get('/', 'index');
+            Route::get('/event/{id}', 'event');
             Route::post('/create', 'create');
+            Route::post('/update/{id}', 'updateEvent');
+            Route::delete('/delete/{id}', 'deleteEvent');
         });
